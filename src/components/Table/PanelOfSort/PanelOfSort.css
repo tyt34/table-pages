@@ -1,0 +1,9 @@
+.panel {
+  display: flex;
+  min-width: 500px;
+  max-width: 1077px;
+  height: 54px;
+  background-color: #474955;
+  box-shadow: 0px 4px 27px rgba(230, 231, 234, 0.78);
+  margin-top: 15px;
+}

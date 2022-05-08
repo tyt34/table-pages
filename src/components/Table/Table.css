@@ -1,0 +1,7 @@
+.table {
+  display: flex;
+  flex-direction: column;
+  margin-left: 78px;
+  margin-right: 77px;
+  max-width: 1077px;
+}

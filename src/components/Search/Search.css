@@ -1,0 +1,36 @@
+.search {
+  display: flex;
+  margin-top: 23px;
+  margin-left: 78px;
+}
+
+.search__input {
+  width: 631px;
+  height: 52px;
+  background-color: #5A5C66;
+  padding-left: 26px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 137.69%;
+  color: #B3B7BF;
+}
+
+.search__input::placeholder {
+  color: #B3B7BF;
+}
+
+.search__button {
+  margin-left: -50px;
+  height: 52px;
+  width: 52px;
+}
+
+.search__button:hover {
+  cursor: pointer;
+}
+
+.search__ico {
+  height: 21px;
+}

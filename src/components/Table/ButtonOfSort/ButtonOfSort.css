@@ -1,0 +1,60 @@
+.btn-sort {
+  display: flex;
+}
+
+.btn-sort:nth-child(1) {
+  width: 110px;
+}
+
+.btn-sort:nth-child(2) {
+  padding-left: 100px;
+  min-width: 300px;
+  max-width: 529px;
+}
+
+.btn-sort:nth-child(3) {
+  min-width: 300px;
+  max-width: 432px;
+  padding-left: 50px;
+}
+
+@media screen and (min-width: 1050px) {
+  .btn-sort:nth-child(3) {
+    padding-left: 200px;
+  }
+}
+
+.btn-sort__title {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 137.69%;
+  color: #FFFFFF;
+}
+
+.btn-sort__button {
+  display: flex;
+  margin-left: 3px;
+  padding: 20px;
+}
+
+.btn-sort__button:hover {
+  cursor: pointer;
+}
+
+.btn-sort__arrow {
+  margin-top: 6px;
+}
+
+.btn-sort__arrow-left {
+  margin-left: 39px;
+}
+
+.btn-sort__arrow-mid {
+  margin-left: 34px;
+}
+
+.btn-sort__arrow-right {
+  margin-left: 25px;
+}

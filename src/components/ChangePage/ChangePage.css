@@ -1,0 +1,34 @@
+.change {
+  max-width: 1010px;
+  display: flex;
+  margin-top: 16px;
+  margin-left: 119px;
+  margin-right: 103px;
+  justify-content: space-between;
+}
+
+.change__nums {
+  display: flex;
+  width: 104px;
+  justify-content: space-between;
+
+}
+
+.change__link {
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 137.69%;
+  text-decoration: none;
+}
+
+.change__link-direction {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 137.69%;
+  color: #474955;
+  text-decoration: none;
+}
