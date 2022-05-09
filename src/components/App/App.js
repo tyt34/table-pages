@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { HashRouter, Routes, Route} from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate} from 'react-router-dom'
 import './App.css'
+//import { useNavigate} from 'react-router-dom'
 import ChangePage from '../ChangePage/ChangePage'
 import Table from '../Table/Table'
 import Search from '../Search/Search'
@@ -14,6 +15,7 @@ import {
 
 function App() {
   const [nowPage, setNowPage] = useState('/1')
+  //const navigate = useNavigate()
   const dispatch = useDispatch()
   const nowPageFromStore = useSelector( store => store.nowPage)
 
@@ -56,14 +58,7 @@ function App() {
               />
             </>
           } />
-          <Route path="/a" element={
-            <>
-              <Search
-              />
-
-            </>
-          } />
-
+          <Route path="/*" element={<Navigate replace to="/1" />} />
         </Routes>
       </HashRouter>
     </section>
@@ -105,4 +100,35 @@ if (BASENAME === undefined) {
     } />
   </Routes>
 </HashRouter>
+*/
+
+
+/*
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay])
+}
+
+useInterval(() => {
+  let nowUrl = window.location.href.split('/')[window.location.href.split('/').length - 1]
+  //console.log(nowPageFromStore)
+  //console.log()
+  if (nowUrl !== ('/'+nowPageFromStore)) {
+    console.log(' изменение неожиданно ', nowUrl)
+    dispatch({ type: 'CHANGE_PAGE', payload: ('/'+nowUrl)})
+    navigate(('/'+nowUrl))
+  }
+  // ERRORRR -  Error: useNavigate() may be used only in the context of a <Router> component.
+}, 5000)
 */

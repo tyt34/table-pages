@@ -33,6 +33,10 @@
   color: #FFFFFF;
 }
 
+.btn-sort__title-select {
+  color: #b9d0c6;
+}
+
 .btn-sort__button {
   display: flex;
   margin-left: 3px;
@@ -45,6 +49,10 @@
 
 .btn-sort__arrow {
   margin-top: 6px;
+}
+
+.btn-sort__arrow-forward {
+  transform: rotate(180deg);
 }
 
 .btn-sort__arrow-left {

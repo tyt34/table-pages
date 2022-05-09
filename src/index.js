@@ -20,6 +20,9 @@ const reducer = (store, {type, payload}) => {
     case "CHANGE_MAX_PAGE":
       return {...store, maxPage: payload}
 
+    case "CHANGE_DATA_ON_NOW_PAGE":
+      return {...store, dataOnPage: payload}
+
     default:
       return store
   }
@@ -28,6 +31,7 @@ const reducer = (store, {type, payload}) => {
 const store = createStore(reducer, {
   dataFromFetch: emptyList,
   dataFromFilter: [],
+  dataOnPage: [],
   nowPage: '/1',
   maxPage: 1,
   inputSearch: ''

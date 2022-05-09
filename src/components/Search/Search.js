@@ -7,6 +7,7 @@ function Search(props) {
 
   function handleInputText(e) {
     setInputText(e.target.value)
+    console.log(e.target.value)
   }
 
   function handleButton() {

@@ -29,20 +29,7 @@ function ChangePage(props) {
       setPrevPage('/'+(getNumFromNowPage(nowPageFromStore)-1))
       setNextPage('/'+(getNumFromNowPage(nowPageFromStore)+1))
     }
-  }, [maxPages])
-
-  useEffect( () => {
-    if (getNumFromNowPage(nowPageFromStore) === 1) { // если текущая страница является первой
-      setPrevPage('/'+maxPages)
-      setNextPage('/'+(getNumFromNowPage(nowPageFromStore)+1))
-    } else if (getNumFromNowPage(nowPageFromStore) === maxPages) { // если текущая страница является последней
-      setPrevPage('/'+(getNumFromNowPage(nowPageFromStore)-1))
-      setNextPage('/'+1)
-    } else { // если текущая страница НЕ первая и НЕ последняя
-      setPrevPage('/'+(getNumFromNowPage(nowPageFromStore)-1))
-      setNextPage('/'+(getNumFromNowPage(nowPageFromStore)+1))
-    }
-  }, [nowPageFromStore])
+  }, [maxPages, nowPageFromStore]) // тут тоже проблема с подпиской на изменения
 
   useEffect( () => {
     // сдесь расположена заготовка логики на случай изменения максимального количества
@@ -88,7 +75,7 @@ function ChangePage(props) {
     }
 
     setListButtonsChangePage(arrButtons)
-  }, [nowPageFromStore])
+  }, [nowPageFromStore, maxPages])
 
   function handleClickBthNum(e, href) {
     console.log(' click ', href)

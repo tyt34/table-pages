@@ -1,5 +1,5 @@
 import './TableList.css'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import TableRow from './TableRow/TableRow'
 import React, { useState, useEffect } from 'react'
 import {
@@ -10,26 +10,29 @@ import {
 } from '../../../utils/constants.js'
 
 function TableList(props) {
+  const dispatch = useDispatch()
   const nowPageFromStore = useSelector( store => store.nowPage)
-  //console.log(' tl: ', nowPageFromStore)
   const [currentList, setCurrentList] = useState([])
   const fullData = useSelector( store => store.dataFromFetch)
+  const dataOnPage = useSelector( store => store.dataOnPage)
+  const store = useSelector( store => store)
+
+  const changeDataOnPage = useSelector(
+    () => {
+      //console.log(' --__-> ')
+    }
+  )
+
+  //console.log(' B-> ', store)
 
   useEffect( () => {
-    setCurrentList(emptyList)
-  }, [])
-  /*
-  function getNumFromNowPage(input) {
-    return Number(input.split('/')[1])
-  }
-  */
+    //console.log(' A-> ', dataOnPage)
+    setCurrentList(dataOnPage)
+    //setCurrentList(data => [...data, dataOnPage])
+    //setInputs(inputs => [...inputs, {num: e.text}] )
+  }, [dataOnPage[0]])
 
   useEffect( () => {
-    //console.log(' CHANGE PAGE')
-  }, [nowPageFromStore])
-
-  useEffect( () => {
-    //console.log(getNumFromNowPage(nowPageFromStore))
     const startCycle = (getNumFromNowPage(nowPageFromStore) * amountStringsOnPage) - amountStringsOnPage
     const endCycle = (getNumFromNowPage(nowPageFromStore) * amountStringsOnPage) - 1
     const arrForThisPage = []
@@ -44,6 +47,7 @@ function TableList(props) {
         arrForThisPage.push(cloneEmptyObj)
       }
     })
+    dispatch({ type: 'CHANGE_DATA_ON_NOW_PAGE', payload: arrForThisPage})
     setCurrentList(arrForThisPage)
   }, [fullData, nowPageFromStore])
 
