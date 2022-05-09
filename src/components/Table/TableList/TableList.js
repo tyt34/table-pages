@@ -1,63 +1,71 @@
 import './TableList.css'
+import { useSelector } from 'react-redux'
+import TableRow from './TableRow/TableRow'
+import React, { useState, useEffect } from 'react'
+import {
+  emptyList,
+  emptyObj,
+  amountStringsOnPage,
+  getNumFromNowPage
+} from '../../../utils/constants.js'
 
 function TableList(props) {
+  const nowPageFromStore = useSelector( store => store.nowPage)
+  //console.log(' tl: ', nowPageFromStore)
+  const [currentList, setCurrentList] = useState([])
+  const fullData = useSelector( store => store.dataFromFetch)
+
+  useEffect( () => {
+    setCurrentList(emptyList)
+  }, [])
+  /*
+  function getNumFromNowPage(input) {
+    return Number(input.split('/')[1])
+  }
+  */
+
+  useEffect( () => {
+    //console.log(' CHANGE PAGE')
+  }, [nowPageFromStore])
+
+  useEffect( () => {
+    //console.log(getNumFromNowPage(nowPageFromStore))
+    const startCycle = (getNumFromNowPage(nowPageFromStore) * amountStringsOnPage) - amountStringsOnPage
+    const endCycle = (getNumFromNowPage(nowPageFromStore) * amountStringsOnPage) - 1
+    const arrForThisPage = []
+
+    fullData.forEach( (el, i) => {
+      if ((i >= startCycle) && (i <= endCycle)) {
+        const cloneEmptyObj = Object.assign({}, emptyObj);
+        cloneEmptyObj.id = el.id
+        cloneEmptyObj.numId = el.id
+        cloneEmptyObj.header = el.title
+        cloneEmptyObj.description = el.body
+        arrForThisPage.push(cloneEmptyObj)
+      }
+    })
+    setCurrentList(arrForThisPage)
+  }, [fullData, nowPageFromStore])
 
   return (
+    <>
     <table className="list">
-      <tr className="list__col">
-        <th className="list__row">
-          <p className="list__text">
-            Ячейка 1
-          </p>
-        </th>
-        <th className="list__row">
-          <p className="list__text">
-            Ячейка 2
-          </p>
-        </th>
-        <th className="list__row">
-          <p className="list__text">
-            Ячейка 3
-          </p>
-        </th>
-      </tr>
-
-      <tr className="list__col">
-        <td className="list__row">
-          <p className="list__text">
-            Ячейка 4
-          </p>
-        </td>
-        <td className="list__row">
-          <p className="list__text">
-            Ячейка 5
-          </p>
-        </td>
-        <td className="list__row">
-          <p className="list__text">
-            Ячейка 6
-          </p>
-        </td>
-      </tr>
-
-      <tr className="list__col">
-        <td className="list__row">
-          <p className="list__text">
-            Ячейка 7
-          </p>
-        </td>
-        <td className="list__row">
-          <p className="list__text">
-            Ячейка 8
-          </p>
-        </td>
-        <td className="list__row">
-          <p className="list__text">
-            Ячейка 9
-          </p>
-        </td>
-      </tr>
+      <tbody>
+        {
+          currentList.map( (tr) =>
+            (
+              <TableRow
+                key={tr.id}
+                numId={tr.numId}
+                header={tr.header}
+                description={tr.description}
+              />
+            )
+          )
+        }
+      </tbody>
     </table>
+    </>
   )
 }
 

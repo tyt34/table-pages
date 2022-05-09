@@ -5,22 +5,13 @@
   margin-left: 119px;
   margin-right: 103px;
   justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .change__nums {
   display: flex;
-  width: 104px;
+  /*width: 104px;*/
   justify-content: space-between;
-
-}
-
-.change__link {
-  font-family: 'Roboto';
-  font-style: italic;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 137.69%;
-  text-decoration: none;
 }
 
 .change__link-direction {
@@ -31,4 +22,13 @@
   line-height: 137.69%;
   color: #474955;
   text-decoration: none;
+
+  transition: color 1.3s;
+  -webkit-transition: color 1.3s;
+  -o-transition: color 1.3s;
+  -moz-transition: color 1.3s;
+}
+
+.change__link-direction:hover {
+  color: red;
 }

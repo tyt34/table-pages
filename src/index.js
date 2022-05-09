@@ -1,46 +1,45 @@
-import React from 'react';
-import ReactDOM from "react-dom/client";
-import './index.css';
-import App from './components/App/App';
-import reportWebVitals from './reportWebVitals';
-
+import React from 'react'
+import ReactDOM from "react-dom/client"
+import './index.css'
+import App from './components/App/App'
+import reportWebVitals from './reportWebVitals'
+import {
+  emptyList,
+} from './utils/constants.js'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-const defaultState = {
-  check: true
-}
+const reducer = (store, {type, payload}) => {
+  switch (type) {
+    case "GET_DATA":
+      return {...store, dataFromFetch: payload}
 
-const reducer = (state = defaultState, action) => {
-  switch (action.type) {
-    case "changeCheck":
-      return {...state, check: !state.check}
+    case "CHANGE_PAGE":
+      return {...store, nowPage: payload}
+
+    case "CHANGE_MAX_PAGE":
+      return {...store, maxPage: payload}
+
     default:
-      return state
+      return store
   }
 }
 
-const store = createStore(reducer)
+const store = createStore(reducer, {
+  dataFromFetch: emptyList,
+  dataFromFilter: [],
+  nowPage: '/1',
+  maxPage: 1,
+  inputSearch: ''
+})
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <Provider store={store}>
     <React.StrictMode>
       <App />
     </React.StrictMode>
   </Provider>
-);
-/*
-ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  </Provider>,
-  document.getElementById('root')
-);
-*/
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+)
+
+reportWebVitals()

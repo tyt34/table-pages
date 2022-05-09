@@ -1,0 +1,23 @@
+.button-num {
+  width: 21px;
+  font-family: 'Roboto';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 137.69%;
+  text-decoration: none;
+  color: #474955;
+
+  transition: color 1.3s;
+  -webkit-transition: color 1.3s;
+  -o-transition: color 1.3s;
+  -moz-transition: color 1.3s;
+}
+
+.button-num:hover {
+  color: red;
+}
+
+.button-num__select {
+  color: #7EBC3C;
+}

@@ -1,7 +1,9 @@
 import './PanelOfSort.css'
-import ButtonOfSort from '../ButtonOfSort/ButtonOfSort'
+import ButtonOfSort from './ButtonOfSort/ButtonOfSort'
+import React, { useState, useEffect } from 'react'
 
 function PanelOfSort(props) {
+  const [choise, setChoise] = useState('rateUp')
 
   return (
     <section className="panel">

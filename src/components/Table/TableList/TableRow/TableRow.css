@@ -1,0 +1,42 @@
+.row {
+  border: 1px solid #E3E6EC;
+  height: 20px;
+  min-width:
+}
+
+@media screen and (min-width: 1050px) {
+  .row {
+    height: 87px;
+  }
+}
+
+.row__th {
+  border: 1px solid #E3E6EC;
+  padding: 10px;
+}
+
+.row__th:nth-child(1) {
+  text-align: center;
+  width: 110px;
+}
+
+.row__th:nth-child(2) {
+  text-align: left;
+  min-width: 300px;
+  max-width: 429px;
+}
+
+.row__th:nth-child(3) {
+  text-align: left;
+  min-width: 300px;
+  max-width: 432px;
+}
+
+.row__text {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 137.69%;
+  color: #474955;
+}
