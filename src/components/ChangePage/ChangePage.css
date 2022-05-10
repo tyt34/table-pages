@@ -1,5 +1,5 @@
 .change {
-  max-width: 1010px;
+  max-width: 998px;
   display: flex;
   margin-top: 16px;
   margin-left: 119px;
@@ -10,7 +10,7 @@
 
 .change__nums {
   display: flex;
-  /*width: 104px;*/
+  margin-top: 8px;
   justify-content: space-between;
 }
 

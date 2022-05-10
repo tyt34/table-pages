@@ -22,6 +22,15 @@ function getNumFromNowPage(input) {
 }
 
 function sortIDDown(a, b) {
+  if (a.id < 0) {
+    return 1
+  }
+  if (b.id < 0) {
+    return 1
+  }
+  ///////////////////////////////////////////
+  // эти и последующие первые два условных выражениния сделаны для того
+  // чтобы при сортировки пустых строк они всегда были снизу
   if (a.id < b.id) {
     return -1;
   }
@@ -31,6 +40,12 @@ function sortIDDown(a, b) {
 }
 
 function sortIDUp(a, b) {
+  if (a.id < 0) {
+    return 1
+  }
+  if (b.id < 0) {
+    return 1
+  }
   if (a.id < b.id) {
     return 1;
   }
@@ -40,6 +55,12 @@ function sortIDUp(a, b) {
 }
 
 function sortHeadDown(a, b) {
+  if (a.header === '') {
+    return 1
+  }
+  if (b.header === '') {
+    return 1
+  }
   if (a.header < b.header) {
     return -1;
   }
@@ -49,6 +70,12 @@ function sortHeadDown(a, b) {
 }
 
 function sortHeadUp(a, b) {
+  if (a.header === '') {
+    return 1
+  }
+  if (b.header === '') {
+    return 1
+  }
   if (a.header < b.header) {
     return 1;
   }
@@ -58,6 +85,12 @@ function sortHeadUp(a, b) {
 }
 
 function sortDescrDown(a, b) {
+  if (a.description === '') {
+    return 1
+  }
+  if (b.description === '') {
+    return 1
+  }
   if (a.description < b.description) {
     return -1;
   }
@@ -67,12 +100,35 @@ function sortDescrDown(a, b) {
 }
 
 function sortDescrUp(a, b) {
+  if (a.description === '') {
+    return 1
+  }
+  if (b.description === '') {
+    return 1
+  }
   if (a.description < b.description) {
     return 1;
   }
   if (a.description > b.description) {
     return -1;
   }
+}
+
+function searchText(textSearch, array) {
+  const result = []
+  for (let i=0; i<array.length; i++) {
+    let i1 = 0
+    let i2 = 0
+    const firstPartOfArr = array[i].title
+    const secondPartOfArr = array[i].body.split('\n').join(' ')
+    //console.log(i, ' - ', firstPartOfArr)
+    if (firstPartOfArr.includes(textSearch)) {
+      result.push(array[i])
+    } else if (secondPartOfArr.includes(textSearch)) {
+      result.push(array[i])
+    }
+  }
+  return result
 }
 
 module.exports.emptyList = emptyList
@@ -87,3 +143,5 @@ module.exports.sortHeadDown = sortHeadDown
 module.exports.sortHeadUp = sortHeadUp
 module.exports.sortDescrDown = sortDescrDown
 module.exports.sortDescrUp = sortDescrUp
+
+module.exports.searchText = searchText

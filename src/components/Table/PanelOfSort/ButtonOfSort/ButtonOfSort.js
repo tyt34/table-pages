@@ -1,5 +1,5 @@
-import './ButtonOfSort.css'
 import arrow from "../../../../images/arrow.svg"
+import './ButtonOfSort.css'
 
 function ButtonOfSort(props) {
   const {
@@ -45,18 +45,3 @@ function ButtonOfSort(props) {
 }
 
 export default ButtonOfSort
-
-//{'btn-sort__arrow btn-sort__arrow-'+arrowClass}
-
-/*
-className={
-  title === getNumFromNowPage(nowPageFromStore) ?
-    (
-      'button-num button-num__select'
-    ) : (
-      'button-num'
-    )
-}
-*/
-
-//"btn-sort__title"

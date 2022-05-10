@@ -7,7 +7,7 @@
 }
 
 .btn-sort:nth-child(2) {
-  padding-left: 100px;
+  padding-left: 106px;
   min-width: 300px;
   max-width: 529px;
 }
@@ -20,7 +20,7 @@
 
 @media screen and (min-width: 1050px) {
   .btn-sort:nth-child(3) {
-    padding-left: 200px;
+    padding-left: 218px;
   }
 }
 

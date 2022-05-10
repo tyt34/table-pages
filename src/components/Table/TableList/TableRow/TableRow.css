@@ -1,12 +1,11 @@
 .row {
   border: 1px solid #E3E6EC;
   height: 20px;
-  min-width:
 }
 
 @media screen and (min-width: 1050px) {
   .row {
-    height: 87px;
+    height: 82px;
   }
 }
 
@@ -17,19 +16,19 @@
 
 .row__th:nth-child(1) {
   text-align: center;
-  width: 110px;
+  width: 92px;
 }
 
 .row__th:nth-child(2) {
   text-align: left;
   min-width: 300px;
-  max-width: 429px;
+  max-width: 424px;
 }
 
 .row__th:nth-child(3) {
   text-align: left;
-  min-width: 300px;
-  max-width: 432px;
+  min-width: 250px;
+  max-width: 339px;
 }
 
 .row__text {

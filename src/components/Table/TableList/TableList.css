@@ -1,3 +1,10 @@
 .list {
-  display: table; /*чтобы файл не пустовал*/
+  display: table;
+  width: 788px;
+}
+
+@media screen and (min-width: 1150px) {
+  .list {
+    width: 1063px;
+  }
 }

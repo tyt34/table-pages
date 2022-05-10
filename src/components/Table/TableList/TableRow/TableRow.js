@@ -1,7 +1,6 @@
 import './TableRow.css'
 
 function TableRow(props) {
-  //console.log(' -_-_-> ',props)
   const {
     numId,
     header,

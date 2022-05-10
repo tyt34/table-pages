@@ -1,8 +1,6 @@
-import './Table.css'
-//import ButtonOfSort from './ButtonOfSort/ButtonOfSort'
 import PanelOfSort from './PanelOfSort/PanelOfSort'
 import TableList from './TableList/TableList'
-
+import './Table.css'
 
 function Table(props) {
 

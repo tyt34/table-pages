@@ -1,8 +1,7 @@
+import {  useSelector } from 'react-redux'
+import { getNumFromNowPage } from '../../../utils/constants.js'
 import './ButtonForChangePageUseNumber.css'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  getNumFromNowPage,
-} from '../../../utils/constants.js'
+
 function ButtonForChangePageUseNumber(props) {
   const {
     href,
@@ -10,8 +9,6 @@ function ButtonForChangePageUseNumber(props) {
     onClick
   } = props
   const nowPageFromStore = useSelector( store => store.nowPage)
-
-  //console.log(' bth: ', title === getNumFromNowPage(nowPageFromStore))
 
   return (
       <a

@@ -1,7 +1,5 @@
-import './PanelOfSort.css'
 import { useDispatch, useSelector } from 'react-redux'
 import ButtonOfSort from './ButtonOfSort/ButtonOfSort'
-import React, { useState, useEffect } from 'react'
 import {
   sortIDUp,
   sortIDDown,
@@ -10,41 +8,38 @@ import {
   sortDescrUp,
   sortDescrDown
 } from '../../../utils/constants.js'
+import './PanelOfSort.css'
 
 function PanelOfSort(props) {
   const dispatch = useDispatch()
-  const [choise, setChoise] = useState('ID')
-  const [idForward, setIdForward] = useState(true)
-  const [headerForward, setHeaderForward] = useState(false)
-  const [descrForward, setDescrForward] = useState(false)
   const dataOnPage = useSelector( store => store.dataOnPage)
+  const dataOfSort = useSelector( store => store.dataOfSort)
 
-  function handleArrow(choise, forward) {
-    setChoise(choise)
-    let arrSort = dataOnPage
-    if (choise === 'ID') {
-      setIdForward(!idForward)
-      if (idForward) {
-        arrSort.sort(sortIDUp)
+  function handleArrow(choise) {
+    if (dataOfSort.main === 'ID') {
+      dispatch({ type: 'CHANGE_SORT_ID', payload: !dataOfSort.sortID})
+      if (dataOfSort.sortID) {
+        dataOnPage.sort(sortIDUp)
       } else {
-        arrSort.sort(sortIDDown)
+        dataOnPage.sort(sortIDDown)
       }
-    } else if (choise === 'Заголовок') {
-      setHeaderForward(!headerForward)
-      if (headerForward) {
-        arrSort.sort(sortHeadUp)
+    } else if (dataOfSort.main === 'Заголовок') {
+      dispatch({ type: 'CHANGE_SORT_HEADER', payload: !dataOfSort.sortHead})
+      if (dataOfSort.sortHead) {
+        dataOnPage.sort(sortHeadUp)
       } else {
-        arrSort.sort(sortHeadDown)
+        dataOnPage.sort(sortHeadDown)
       }
-    } else if (choise === 'Описание') {
-      setDescrForward(!descrForward)
-      if (descrForward) {
-        arrSort.sort(sortDescrUp)
+    } else if (dataOfSort.main === 'Описание') {
+      dispatch({ type: 'CHANGE_SORT_DESCR', payload: !dataOfSort.sortDescr})
+      if (dataOfSort.sortDescr) {
+        dataOnPage.sort(sortDescrUp)
       } else {
-        arrSort.sort(sortDescrDown)
+        dataOnPage.sort(sortDescrDown)
       }
     }
-    dispatch({ type: 'CHANGE_DATA_ON_NOW_PAGE', payload: arrSort})
+    dispatch({ type: 'CHANGE_SORT_MAIN', payload: choise})
+    dispatch({ type: 'CHANGE_DATA_ON_NOW_PAGE', payload: dataOnPage})
   }
 
   return (
@@ -52,22 +47,22 @@ function PanelOfSort(props) {
       <ButtonOfSort
         title="ID"
         arrowClass="left"
-        choise={choise}
-        forward={idForward}
+        choise={dataOfSort.main}
+        forward={dataOfSort.sortID}
         onClick={handleArrow}
       />
       <ButtonOfSort
         title="Заголовок"
         arrowClass="mid"
-        choise={choise}
-        forward={headerForward}
+        choise={dataOfSort.main}
+        forward={dataOfSort.sortHead}
         onClick={handleArrow}
       />
       <ButtonOfSort
         title="Описание"
         arrowClass="right"
-        choise={choise}
-        forward={descrForward}
+        choise={dataOfSort.main}
+        forward={dataOfSort.sortDescr}
         onClick={handleArrow}
       />
     </section>

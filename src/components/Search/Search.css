@@ -5,7 +5,7 @@
 }
 
 .search__input {
-  width: 631px;
+  width: 605px;
   height: 52px;
   background-color: #5A5C66;
   padding-left: 26px;
@@ -21,16 +21,8 @@
   color: #B3B7BF;
 }
 
-.search__button {
-  margin-left: -50px;
-  height: 52px;
-  width: 52px;
-}
-
-.search__button:hover {
-  cursor: pointer;
-}
-
 .search__ico {
+  margin-left: -52px;
+  margin-top: 15px;
   height: 21px;
 }

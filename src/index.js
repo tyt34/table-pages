@@ -23,6 +23,24 @@ const reducer = (store, {type, payload}) => {
     case "CHANGE_DATA_ON_NOW_PAGE":
       return {...store, dataOnPage: payload}
 
+    case "CHANGE_DATA_FROM_FILTER":
+      return {...store, dataFromFilter: payload}
+
+    case "CHANGE_INPUT_SEARCH":
+      return {...store, inputSearch: payload}
+
+    case "CHANGE_SORT_MAIN":
+      return {...store, dataOfSort: { ...store.dataOfSort, main: payload}}
+
+    case "CHANGE_SORT_ID":
+      return {...store, dataOfSort: { ...store.dataOfSort, sortID: payload}}
+
+    case "CHANGE_SORT_HEADER":
+      return {...store, dataOfSort: { ...store.dataOfSort, sortHead: payload}}
+
+    case "CHANGE_SORT_DESCR":
+      return {...store, dataOfSort: { ...store.dataOfSort, sortDescr: payload}}
+
     default:
       return store
   }
@@ -34,7 +52,13 @@ const store = createStore(reducer, {
   dataOnPage: [],
   nowPage: '/1',
   maxPage: 1,
-  inputSearch: ''
+  inputSearch: '',
+  dataOfSort: {
+    main: 'ID',
+    sortID: true,
+    sortHead: false,
+    sortDescr: false
+  }
 })
 
 const root = ReactDOM.createRoot(document.getElementById("root"))

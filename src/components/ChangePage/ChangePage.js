@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  getNumFromNowPage,
-  maxAmountButtonsOnPage
-} from '../../utils/constants.js'
-import './ChangePage.css'
 import ButtonForChangePageUseNumber from './ButtonForChangePageUseNumber/ButtonForChangePageUseNumber'
+import { getNumFromNowPage, maxAmountButtonsOnPage } from '../../utils/constants.js'
+import './ChangePage.css'
 
 function ChangePage(props) {
   const [listButtonsChangePage, setListButtonsChangePage] = useState([{href: '/1', title: '1'}])
@@ -14,6 +11,7 @@ function ChangePage(props) {
   const [nextPage, setNextPage] = useState('')
   const nowPageFromStore = useSelector( store => store.nowPage)
   const maxPages = useSelector( store => store.maxPage)
+  const inputSearch = useSelector( store => store.inputSearch)
   const navigate = useNavigate()
   const dispatch = useDispatch()
   let someValidPath = ''
@@ -29,7 +27,28 @@ function ChangePage(props) {
       setPrevPage('/'+(getNumFromNowPage(nowPageFromStore)-1))
       setNextPage('/'+(getNumFromNowPage(nowPageFromStore)+1))
     }
-  }, [maxPages, nowPageFromStore]) // тут тоже проблема с подпиской на изменения
+  }, [maxPages, nowPageFromStore])
+
+  useEffect( () => {
+    // это нужно для:
+    // допусти вы написали в поисковике "а ". Вы получили 10 страниц. Перешли на 10.
+    // потом вы дописываете "a", то есть в строке поиска будет: "a a". Тогда будет максимум 2 странице
+    // считаю, что в этом случае нужен переход на максимально возможную страницу.
+    let nowUrl = window.location.href.split('/')[window.location.href.split('/').length - 1]
+    if (nowUrl > maxPages) {
+      if (maxPages === 0) {
+        dispatch({ type: 'CHANGE_PAGE', payload: '/1'})
+        navigate('/1')
+      } else {
+        dispatch({ type: 'CHANGE_PAGE', payload: '/'+maxPages})
+        navigate('/'+maxPages)
+      }
+
+    } else if (maxPages < Number(nowPageFromStore.split('/')[1])) {
+      dispatch({ type: 'CHANGE_PAGE', payload: '/'+maxPages})
+      navigate('/'+maxPages)
+    }
+  }, [inputSearch, maxPages])
 
   useEffect( () => {
     // сдесь расположена заготовка логики на случай изменения максимального количества
@@ -37,48 +56,39 @@ function ChangePage(props) {
     const a = getNumFromNowPage(nowPageFromStore)
     const b = maxPages
     const c = maxAmountButtonsOnPage
-    //const cCeil = Math.ceil(c/2)
     const cFloor = Math.floor(c/2)
-    //console.log(' a/b/c ', a, b, c, cCeil, cFloor)
     const arrButtons = []
     if (b > c) {
-      //console.log(' - 1 -')
       if (a < c) {
-        //console.log(' - 1.1 -')
         if (a <= Math.ceil(c/2)) {
-          //console.log(' - 1.1.1 -')
           for (let i=1; i <= c; i++) {
             arrButtons.push({href: '/'+i, title: i})
           }
         } else {
-          //console.log(' - 1.1.2 -')
           for (let i=(a-cFloor); i < (c+cFloor); i++) {
             arrButtons.push({href: '/'+i, title: i})
           }
         }
       } else {
-        //console.log(' - 1.2 -')
         if (a < (b-cFloor)) {
-          //console.log(' - 1.2.1 -')
           for (let i=(a-cFloor); i<(a-cFloor+c); i++) {
             arrButtons.push({href: '/'+i, title: i})
           }
         } else {
-          //console.log(' - 1.2.2 -')
           for (let i=c+1; i<b+1; i++) {
             arrButtons.push({href: '/'+i, title: i})
           }
         }
       }
     } else {
-      //console.log(' - 2 -')
+      for (let i=1; i<b+1; i++) {
+        arrButtons.push({href: '/'+i, title: i})
+      }
     }
-
     setListButtonsChangePage(arrButtons)
   }, [nowPageFromStore, maxPages])
 
   function handleClickBthNum(e, href) {
-    console.log(' click ', href)
     e.preventDefault()
     dispatch({ type: 'CHANGE_PAGE', payload: href})
     navigate(href)
@@ -87,7 +97,7 @@ function ChangePage(props) {
   return (
     <section className="change">
       {
-        maxPages !== 1 ?
+        maxPages > 1 ?
           (
             <a
               className="change__link-direction"
@@ -122,7 +132,7 @@ function ChangePage(props) {
       </section>
 
       {
-        maxPages !== 1 ?
+        maxPages > 1 ?
           (
             <a
               className="change__link-direction"
