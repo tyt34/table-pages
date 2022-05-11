@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import TableRow from './TableRow/TableRow'
 import {
-  emptyObj, amountStringsOnPage, getNumFromNowPage,
+  emptyObj, maxAmountStringsOnPage, getNumFromNowPage,
   sortIDUp, sortIDDown, sortHeadUp, sortHeadDown,
   sortDescrUp, sortDescrDown
 } from '../../../utils/constants.js'
@@ -19,8 +19,8 @@ function TableList(props) {
 
   useEffect( () => {
     const arrForThisPage = []
-    const startCycle = (getNumFromNowPage(nowPageFromStore) * amountStringsOnPage) - amountStringsOnPage
-    const endCycle = (getNumFromNowPage(nowPageFromStore) * amountStringsOnPage) - 1
+    const startCycle = (getNumFromNowPage(nowPageFromStore) * maxAmountStringsOnPage) - maxAmountStringsOnPage
+    const endCycle = (getNumFromNowPage(nowPageFromStore) * maxAmountStringsOnPage) - 1
 
     let dataForWatch
     if (dataFromFilter.length) {
@@ -43,8 +43,8 @@ function TableList(props) {
         arrForThisPage.push(cloneEmptyObj)
       }
     })
-    if (arrForThisPage.length < amountStringsOnPage) {
-      for (let i=arrForThisPage.length; arrForThisPage.length<amountStringsOnPage; i++) {
+    if (arrForThisPage.length < maxAmountStringsOnPage) {
+      for (let i=arrForThisPage.length; arrForThisPage.length<maxAmountStringsOnPage; i++) {
         const cloneEmptyObj = Object.assign({}, emptyObj)
         cloneEmptyObj.id = -i // чтобы не произошло совпадения по key в map.
         arrForThisPage.push(cloneEmptyObj)
@@ -71,7 +71,7 @@ function TableList(props) {
       }
     }
     dispatch({ type: 'CHANGE_DATA_ON_NOW_PAGE', payload: arrForThisPage})
-    dispatch({ type: 'CHANGE_MAX_PAGE', payload: Math.ceil(dataForWatch.length / amountStringsOnPage)}) // необходимо определить, какое может быть максимальное количество страниц
+    dispatch({ type: 'CHANGE_MAX_PAGE', payload: Math.ceil(dataForWatch.length / maxAmountStringsOnPage)}) // необходимо определить, какое может быть максимальное количество страниц
     setCurrentList(arrForThisPage)
   }, [fullData, nowPageFromStore, dataFromFilter])
 

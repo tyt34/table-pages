@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import ChangePage from '../ChangePage/ChangePage'
 import Table from '../Table/Table'
 import Search from '../Search/Search'
-import { amountStringsOnPage } from '../../utils/constants.js'
+import { maxAmountStringsOnPage } from '../../utils/constants.js'
 import { getInformation } from '../../utils/api.js'
 import './App.css'
 
@@ -24,7 +24,7 @@ function App() {
     getInformation()
     .then( res => {
       dispatch({ type: 'GET_DATA', payload: res}) // получение данных при первой загрузки приложения
-      dispatch({ type: 'CHANGE_MAX_PAGE', payload: res.length / amountStringsOnPage}) // необходимо определить, какое может быть максимальное количество страниц
+      dispatch({ type: 'CHANGE_MAX_PAGE', payload: res.length / maxAmountStringsOnPage}) // необходимо определить, какое может быть максимальное количество страниц
     })
     .catch( e => {
       console.log(' er1 ', e)

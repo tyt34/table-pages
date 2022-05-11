@@ -56,7 +56,6 @@ function ChangePage(props) {
     const a = getNumFromNowPage(nowPageFromStore)
     const b = maxPages
     const c = maxAmountButtonsOnPage
-    const cCeil = Math.ceil(c/2)
     const cFloor = Math.floor(c/2)
     const arrButtons = []
     if (b > c) {

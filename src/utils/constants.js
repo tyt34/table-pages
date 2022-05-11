@@ -1,4 +1,4 @@
-const amountStringsOnPage = 10
+const maxAmountStringsOnPage = 10
 
 const maxAmountButtonsOnPage = 5
 
@@ -11,7 +11,7 @@ const emptyObj = {
 
 const emptyList = []
 
-for (let i=1; i<=amountStringsOnPage; i++) {
+for (let i=1; i<=maxAmountStringsOnPage; i++) {
   const cloneEmptyObj = Object.assign({}, emptyObj);
   cloneEmptyObj.id = i
   emptyList.push(cloneEmptyObj)
@@ -130,7 +130,7 @@ function searchText(textSearch, array) {
 
 module.exports.emptyList = emptyList
 module.exports.emptyObj = emptyObj
-module.exports.amountStringsOnPage = amountStringsOnPage
+module.exports.maxAmountStringsOnPage = maxAmountStringsOnPage
 module.exports.getNumFromNowPage = getNumFromNowPage
 module.exports.maxAmountButtonsOnPage = maxAmountButtonsOnPage
 
