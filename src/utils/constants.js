@@ -117,11 +117,8 @@ function sortDescrUp(a, b) {
 function searchText(textSearch, array) {
   const result = []
   for (let i=0; i<array.length; i++) {
-    let i1 = 0
-    let i2 = 0
     const firstPartOfArr = array[i].title
     const secondPartOfArr = array[i].body.split('\n').join(' ')
-    //console.log(i, ' - ', firstPartOfArr)
     if (firstPartOfArr.includes(textSearch)) {
       result.push(array[i])
     } else if (secondPartOfArr.includes(textSearch)) {

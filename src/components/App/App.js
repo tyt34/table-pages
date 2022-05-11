@@ -8,6 +8,14 @@ import { amountStringsOnPage } from '../../utils/constants.js'
 import { getInformation } from '../../utils/api.js'
 import './App.css'
 
+const isProducttion = process.env.REACT_APP_PRODUCTION
+let base
+if (isProducttion !== 'dev') {
+  base = '/table-pages'
+} else {
+  base = '/'
+}
+
 function App() {
   const dispatch = useDispatch()
   const nowPageFromStore = useSelector( store => store.nowPage)
@@ -25,7 +33,7 @@ function App() {
 
   return (
     <section className="app">
-      <HashRouter basename={"/"}>
+      <HashRouter basename={base}>
         <Routes>
           <Route path="/1" element={
             <>

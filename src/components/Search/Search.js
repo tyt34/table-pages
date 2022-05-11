@@ -7,7 +7,6 @@ import './Search.css'
 function Search(props) {
   const [inputText, setInputText] = React.useState('')
   const fullData = useSelector( store => store.dataFromFetch)
-  const store = useSelector( store => store)
   const nowPageFromStore = useSelector( store => store.nowPage)
   const inputSearch = useSelector( store => store.inputSearch)
   const dispatch = useDispatch()
