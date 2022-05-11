@@ -56,6 +56,7 @@ function ChangePage(props) {
     const a = getNumFromNowPage(nowPageFromStore)
     const b = maxPages
     const c = maxAmountButtonsOnPage
+    const cCeil = Math.ceil(c/2)
     const cFloor = Math.floor(c/2)
     const arrButtons = []
     if (b > c) {
@@ -65,17 +66,17 @@ function ChangePage(props) {
             arrButtons.push({href: '/'+i, title: i})
           }
         } else {
-          for (let i=(a-cFloor); i < (c+cFloor); i++) {
+          for (let i=(a-cFloor); i < (a-cFloor+c); i++) {
             arrButtons.push({href: '/'+i, title: i})
           }
         }
       } else {
-        if (a < (b-cFloor)) {
+        if (a <= (b-cFloor)) {
           for (let i=(a-cFloor); i<(a-cFloor+c); i++) {
             arrButtons.push({href: '/'+i, title: i})
           }
         } else {
-          for (let i=c+1; i<b+1; i++) {
+          for (let i=(b-c+1); i<b+1; i++) {
             arrButtons.push({href: '/'+i, title: i})
           }
         }
