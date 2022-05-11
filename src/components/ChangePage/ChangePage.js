@@ -5,7 +5,7 @@ import ButtonForChangePageUseNumber from './ButtonForChangePageUseNumber/ButtonF
 import { getNumFromNowPage, maxAmountButtonsOnPage } from '../../utils/constants.js'
 import './ChangePage.css'
 
-function ChangePage(props) {
+function ChangePage() {
   const [listButtonsChangePage, setListButtonsChangePage] = useState([{href: '/1', title: '1'}])
   const [prevPage, setPrevPage] = useState('')
   const [nextPage, setNextPage] = useState('')

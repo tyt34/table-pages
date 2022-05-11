@@ -4,7 +4,7 @@ import { searchText } from '../../utils/constants.js'
 import ico from "../../images/search.svg"
 import './Search.css'
 
-function Search(props) {
+function Search() {
   const [inputText, setInputText] = React.useState('')
   const fullData = useSelector( store => store.dataFromFetch)
   const nowPageFromStore = useSelector( store => store.nowPage)

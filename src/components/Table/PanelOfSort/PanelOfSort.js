@@ -10,7 +10,7 @@ import {
 } from '../../../utils/constants.js'
 import './PanelOfSort.css'
 
-function PanelOfSort(props) {
+function PanelOfSort() {
   const dispatch = useDispatch()
   const dataOnPage = useSelector( store => store.dataOnPage)
   const dataOfSort = useSelector( store => store.dataOfSort)

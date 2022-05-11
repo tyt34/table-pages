@@ -8,7 +8,7 @@ import {
 } from '../../../utils/constants.js'
 import './TableList.css'
 
-function TableList(props) {
+function TableList() {
   const dispatch = useDispatch()
   const nowPageFromStore = useSelector( store => store.nowPage)
   const [currentList, setCurrentList] = useState([])
